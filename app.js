@@ -33,6 +33,14 @@ var scheduleText = function(cronTime, message) {
   }, null, true);
 };
 
+// `randomTime()` will create a random time that is within waking hours
+// (in cron format).
+var randomTime = function() {
+  var minute = Math.floor(Math.random() * 60);
+  var hour = Math.floor(Math.random() * (20 - 8)) + 8;
+  return [minute, hour, '*', '*', '*'].join(' ');
+};
+
 cronTimes.forEach(function(time, i){
   scheduleText(time, thoughtReminders[i]);
 });
