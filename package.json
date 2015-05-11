@@ -11,5 +11,8 @@
   "dependencies": {
     "cron": "^1.0.9",
     "twilio": "^2.2.0"
+  },
+  "engines": {
+    "node": "v0.12.0"
   }
 }
