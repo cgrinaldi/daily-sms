@@ -68,3 +68,6 @@ var scheduleMessages = function(n) {
 // Schedule 100 messages to be sent.
 console.log(scheduleMessages(100));
 
+// Seeing what the server time is.
+console.log('server time is:', new Date());
+
