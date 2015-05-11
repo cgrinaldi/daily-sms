@@ -41,6 +41,12 @@ var randomTime = function() {
   return [minute, hour, '*', '*', '*'].join(' ');
 };
 
+// `randomMessage()` will select a random message.
+var randomMessage = function(messages) {
+  var idx = Math.floor(Math.random() * messages.length);
+  return messages[idx];
+};
+
 cronTimes.forEach(function(time, i){
   scheduleText(time, thoughtReminders[i]);
 });
