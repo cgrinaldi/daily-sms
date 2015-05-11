@@ -55,7 +55,7 @@ var scheduleMessages = function(n) {
   var times = [];
   for (var i = 0; i < n; i++) {
     var message = randomMessage(thoughtReminders);
-    var time = randomTime(22, 21);
+    var time = randomTime(12, 20);
     scheduleText(time, message);
     times.push(time);
   }
@@ -65,8 +65,8 @@ var scheduleMessages = function(n) {
   return times;
 };
 
-// Schedule 100 messages to be sent.
-console.log(scheduleMessages(100));
+// Schedule messages to be sent.
+console.log(scheduleMessages(8));
 
 // Seeing what the server time is.
 console.log('server time is:', new Date());
