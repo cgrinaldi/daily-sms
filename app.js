@@ -14,13 +14,6 @@ var thoughtReminders = [
   'Are you dreaming right now? How do you know?'
 ];
 
-var cronTimes = [
-  '44 15 * * *',
-  '44 15 * * *',
-  '45 15 * * *',
-  '45 15 * * *'
-];
-
 // `scheduleText()` will create a cronJob that will send the input text
 // at the desired time.
 var scheduleText = function(cronTime, message) {
@@ -35,9 +28,9 @@ var scheduleText = function(cronTime, message) {
 
 // `randomTime()` will create a random time that is within waking hours
 // (in cron format).
-var randomTime = function() {
+var randomTime = function(beginHour, endHour) {
   var minute = Math.floor(Math.random() * 60);
-  var hour = Math.floor(Math.random() * (20 - 8)) + 8;
+  var hour = Math.floor(Math.random() * (endHour - beginHour)) + beginHour;
   return [minute, hour, '*', '*', '*'].join(' ');
 };
 
@@ -47,6 +40,31 @@ var randomMessage = function(messages) {
   return messages[idx];
 };
 
-cronTimes.forEach(function(time, i){
-  scheduleText(time, thoughtReminders[i]);
-});
+// Helper functions to display when the times are scheduled.
+var convertCronTime = function(cronStr) {
+  var arrNums = cronStr.split(' ');
+  return arrNums[1] + arrNums[0];
+};
+
+var sortCronTimes = function(a, b){
+  return Number(convertCronTime(a) - convertCronTime(b));
+};
+
+// Schedule n different messages throughout the day.
+var scheduleMessages = function(n) {
+  var times = [];
+  for (var i = 0; i < n; i++) {
+    var message = randomMessage(thoughtReminders);
+    var time = randomTime(17, 16);
+    scheduleText(time, message);
+    times.push(time);
+  }
+
+  // Return the scheduled times of the messages.
+  times.sort(sortCronTimes);
+  return times;
+};
+
+// Schedule 100 messages to be sent.
+console.log(scheduleMessages(100));
+
