@@ -30,7 +30,9 @@ var scheduleText = function(cronTime, message) {
 // (in cron format).
 var randomTime = function(beginHour, endHour) {
   var minute = Math.floor(Math.random() * 60);
-  var hour = Math.floor(Math.random() * (endHour - beginHour)) + beginHour;
+  var hourOffset = 4;
+  var hour = Math.floor(Math.random() * (endHour - beginHour)) + beginHour + hourOffset;
+  hour = hour % 24;
   return [minute, hour, '*', '*', '*'].join(' ');
 };
 
@@ -55,7 +57,7 @@ var scheduleMessages = function(n) {
   var times = [];
   for (var i = 0; i < n; i++) {
     var message = randomMessage(thoughtReminders);
-    var time = randomTime(12, 20);
+    var time = randomTime(8, 20);
     scheduleText(time, message);
     times.push(time);
   }
