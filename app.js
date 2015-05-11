@@ -19,8 +19,8 @@ var thoughtReminders = [
 var scheduleText = function(cronTime, message) {
   new cronJob(cronTime, function() {
     client.sendMessage({
-      to: config.myPhoneNumber,
-      from: config.twilioPhoneNumber,
+      to: process.env.myPhoneNumber,
+      from: process.env.twilioPhoneNumber,
       body: message
     }, function(err, data){});
   }, null, true);
