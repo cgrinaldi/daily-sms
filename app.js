@@ -55,7 +55,7 @@ var scheduleMessages = function(n) {
   var times = [];
   for (var i = 0; i < n; i++) {
     var message = randomMessage(thoughtReminders);
-    var time = randomTime(18, 17);
+    var time = randomTime(22, 21);
     scheduleText(time, message);
     times.push(time);
   }
