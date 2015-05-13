@@ -1,9 +1,16 @@
-// Load API configuration info
-// var config = require('./config.js');
+// Load API configuration info (if local)
+try {
+  var config = require('./config.js');
+} catch (e) {
+  var config = {};
+}
+
+var ACCOUNT_SID = config.ACCOUNT_SID || process.env.ACCOUNT_SID;
+var AUTH_TOKEN = config.AUTH_TOKEN || process.env.AUTH_TOKEN;
 
 // Add app dependencies
 var twilio = require('twilio');
-var client = twilio(process.env.ACCOUNT_SID, process.env.AUTH_TOKEN);
+var client = twilio(ACCOUNT_SID, AUTH_TOKEN);
 var cronJob = require('cron').CronJob;
 
 // Create Stoic reminder messages
