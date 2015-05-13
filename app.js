@@ -1,16 +1,7 @@
-// Load API configuration info (if local)
-try {
-  var config = require('./config.js');
-} catch (e) {
-  var config = {};
-}
-
-var ACCOUNT_SID = config.ACCOUNT_SID || process.env.ACCOUNT_SID;
-var AUTH_TOKEN = config.AUTH_TOKEN || process.env.AUTH_TOKEN;
-
 // Add app dependencies
+var config = require('./config.js');
 var twilio = require('twilio');
-var client = twilio(ACCOUNT_SID, AUTH_TOKEN);
+var client = twilio(config.ACCOUNT_SID, config.AUTH_TOKEN);
 var cronJob = require('cron').CronJob;
 var reminders = require('./reminders.js');
 var helpers = require('./helpers.js');
@@ -20,8 +11,8 @@ var helpers = require('./helpers.js');
 var scheduleText = function(cronTime, message) {
   new cronJob(cronTime, function() {
     client.sendMessage({
-      to: process.env.myPhoneNumber,
-      from: process.env.twilioPhoneNumber,
+      to: config.myPhoneNumber,
+      from: config.twilioPhoneNumber,
       body: message
     }, function(err, data){});
   }, null, true);
@@ -46,9 +37,7 @@ var scheduleMessages = function(n, messages) {
 
 // Schedule messages to be sent. This runs once per day, automatically,
 // with Heroku.
-console.log(scheduleMessages(2, reminders.stoicReminders));
+console.log(scheduleMessages(4, reminders.stoicReminders));
 console.log(scheduleMessages(2, reminders.dreamingReminders));
-
-// Seeing what the server time is.
 console.log('server time is:', new Date());
 
