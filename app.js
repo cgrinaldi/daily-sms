@@ -5,12 +5,12 @@
  */
 
 // Add app dependencies
-var config = require('./config.js');
+var config = require('./js/config.js');
 var twilio = require('twilio');
 var client = twilio(config.ACCOUNT_SID, config.AUTH_TOKEN);
 var cronJob = require('cron').CronJob;
-var reminders = require('./reminders.js');
-var helpers = require('./helpers.js');
+var reminders = require('./js/reminders.js');
+var helpers = require('./js/helpers.js');
 
 /**
  * Creates a cronJob that will send a SMS message at the desired time.
