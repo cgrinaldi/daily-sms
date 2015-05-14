@@ -1,5 +1,12 @@
-// Load API configuration info (if local). Otherwise, get the necessary
-// information from the Heroku environment.
+/**
+ * @overview Load API configuration info (if local). Otherwise, get the
+ * necessary information from the Heroku environment.
+ * @author Chris Rinaldi <cgrinaldi@gmail.com>
+
+/**
+ * @module config
+ */
+
 try {
   var private = require('./private.js');
 } catch (e) {

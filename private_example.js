@@ -1,7 +1,11 @@
-// Private information
-//
-// Make sure to replace this with your app specific API info, and
-// save the file as private.js
+/**
+ * @overview Private information - make sure to replace with your app
+ * specific API info, and save the file as private.js .
+ * @author Chris Rinaldi <cgrinaldi@gmail.com>
+
+/**
+ * @module private
+ */
 
 // Twilio specific API information
 module.exports.ACCOUNT_SID = 'ENTER ACCOUNT_SID HERE';

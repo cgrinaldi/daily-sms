@@ -1,3 +1,9 @@
+/**
+ * @overview Setup dependencies and run app to schedule text messages to
+ * be sent at various times throughout the day.
+ * @author Chris Rinaldi <cgrinaldi@gmail.com>
+ */
+
 // Add app dependencies
 var config = require('./config.js');
 var twilio = require('twilio');
@@ -6,8 +12,13 @@ var cronJob = require('cron').CronJob;
 var reminders = require('./reminders.js');
 var helpers = require('./helpers.js');
 
-// `scheduleText()` will create a cronJob that will send the input text
-// at the desired time.
+/**
+ * Creates a cronJob that will send a SMS message at the desired time.
+ *
+ * @param {string} cronTime - recurring time for message to be sent
+ * @param {string} message - content of SMS message to be sent
+ * @returns {undefined}
+ */
 var scheduleText = function(cronTime, message) {
   new cronJob(cronTime, function() {
     client.sendMessage({
@@ -18,9 +29,15 @@ var scheduleText = function(cronTime, message) {
   }, null, true);
 };
 
-// `scheduleMessages()` will schedule n different messages throughout the day.
-// This is the main workhorse function that does all of the work (along with
-// reporting what cron times those messages will go out).
+/**
+ * Schedule any number of messages to be sent throughout the day at random
+ * times. This is the main workhorse function that performs scheduling
+ * and outputs the cron times the messages will go out at.
+ *
+ * @param {number} n - number of messages to schedule
+ * @param {string[]} messages - array of messages to select from when scheduling
+ * @returns {array}
+ */
 var scheduleMessages = function(n, messages) {
   var times = [];
   for (var i = 0; i < n; i++) {

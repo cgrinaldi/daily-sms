@@ -2,3 +2,4 @@ node_modules/*
 private.js
 npm-debug.log
 /*.env
+out/
