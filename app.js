@@ -54,7 +54,7 @@ var scheduleMessages = function(n, messages) {
 
 // Schedule messages to be sent. This runs once per day, automatically,
 // with Heroku.
-console.log(scheduleMessages(4, reminders.stoicReminders));
-console.log(scheduleMessages(2, reminders.dreamingReminders));
+console.log(scheduleMessages(0, reminders.stoicReminders));
+console.log(scheduleMessages(0, reminders.dreamingReminders));
 console.log('server time is:', new Date());
 
